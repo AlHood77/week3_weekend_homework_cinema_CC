@@ -8,7 +8,7 @@ class Customer
     def initialize( options )
         @id = options['id'].to_i if options ['id']
         @name = options['name']
-        @funds = options['funds']
+        @funds = options['funds'].to_i
     end
 
     def save()
@@ -44,6 +44,13 @@ class Customer
         values = [@id]
         film_data = SqlRunner.run(sql, values)
         return Film.map_items(film_data)
+    end
+
+    def remaining_funds()
+        films = self.film()
+        film_prices = films.map{|film| film.price}
+        combined_price = film_prices.sum
+        return @funds - combined_price.to_i
     end
 
     def self.all()
