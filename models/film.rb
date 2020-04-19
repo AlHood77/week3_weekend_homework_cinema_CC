@@ -6,7 +6,7 @@ class Film
     attr_accessor :title, :price
 
     def initialize( options )
-        @id = options['id'].to_f if options['id']
+        @id = options['id'].to_i if options['id']
         @title = options['title']
         @price = options['price']
     end
@@ -39,9 +39,20 @@ class Film
         SqlRunner.run(sql, values)
     end
 
+    def self.all()
+        sql = "SELECT * FROM films"
+        films = SqlRunner.run(sql)
+        return Film.map_items(films)
+    end
+
     def self.delete_all()
         sql = "DELETE FROM films"
         SqlRunner.run(sql)
+    end
+
+    def self.map_items(film_data)
+        result = film_data.map {|film| Film.new(film)}
+        return result
     end
 
 end
