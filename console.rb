@@ -12,11 +12,11 @@ customer3 = Customer.new({ 'name' => 'Paul McCormack', 'funds' => 20 })
 customer3.save()
 
 film1 = Film.new({ 'title' => 'The Goonies', 'price' => 15 })
-
+film1.save()
 film2 = Film.new({ 'title' => 'Stand By Me', 'price' => 10 })
-
+film2.save()
 film3 = Film.new({ 'title' => 'Flight of the Navigator', 'price' => 12 })
-
+film3.save()
 
 ticket1 = Ticket.new({ 'customer_id' => customer1.id, 'film_id' => film1.id })
 ticket2 = Ticket.new({ 'customer_id' => customer1.id, 'film_id' => film2.id })
